@@ -16,7 +16,7 @@ export function CfRepeater(Vue) {
              *
              * @returns {*}
              */
-            collectionItems () {
+            items () {
                 return Object.values(this.collection.getItems())
             }
         },
@@ -46,7 +46,7 @@ export function CfRepeater(Vue) {
         },
 
         render (createElement) {
-            return createElement(this.wrap, this.getRepeaterRootOptions(), this.collectionItems.map((item) => {
+            return createElement(this.wrap, this.getRepeaterRootOptions(), this.items.map((item) => {
                 let slotProps = Object.assign({
                     'remove': this.removeItem,
                     'item': item
