@@ -24,24 +24,34 @@ export function CfRepeater(Vue) {
         methods: {
             removeItem (item) {
                 this.collection.removeItem(item)
+            },
+
+            /**
+             * Provide additional slot properties. Can be extended by child.
+             *
+             * @return {{}}
+             */
+            getRepeatedSlotProps () {
+                return {};
+            },
+
+            /**
+             * Additional repeater root options. Can be extended by child.
+             *
+             * @return {{}}
+             */
+            getRepeaterRootOptions () {
+                return {};
             }
         },
 
         render (createElement) {
-            let rootOptions = this.provideRootOptions ? this.provideRootOptions() : {};
+            return createElement(this.wrap, this.getRepeaterRootOptions(), this.collectionItems.map((item) => {
+                let slotProps = Object.assign({
+                    'remove': this.removeItem,
+                    'item': item
+                }, this.getRepeatedSlotProps());
 
-            return createElement(this.wrap, rootOptions, this.collectionItems.map((item) => {
-                let slotProps = {
-                    'remove': this.removeItem
-                };
-
-                /*
-                 * We can provide additional props from repeater's child
-                 */
-                if (this.provideSlotProps) {
-                    slotProps = Object.assign(slotProps, this.provideSlotProps())
-                }
-                slotProps['item'] = item;
                 return this.$scopedSlots.default(slotProps)
             }))
         }
