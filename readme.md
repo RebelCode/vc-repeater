@@ -3,7 +3,10 @@
 ## Usage
 ```js
 <repeater :collection="items">
-    <div slot-scope="r">{{ r.item.title }}</div>
+    <div class="repeater-item" slot-scope="r">
+        <span>{{ r.item.title }}</span>
+        <button @click="r.remove(r.item)">x</button>
+    </div>
 </repeater>
 ```
 Where `collection` has type of `FunctionalCollection` from [std-lib](https://github.com/RebelCode/std-lib).
