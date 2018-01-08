@@ -2,13 +2,13 @@
 
 ## Usage
 ```js
-<repeater :items="items">
+<repeater :collection="items">
     <div slot-scope="r">{{ r.item.title }}</div>
 </repeater>
 ```
-Where `items` has type of `FunctionalCollection` from [std-lib](https://github.com/RebelCode/std-lib).
+Where `collection` has type of `FunctionalCollection` from [std-lib](https://github.com/RebelCode/std-lib).
 
-This example will iterate through all items in `items` object and output each item using child `repeater` code (`<div slot-scope="r"...` in our case). Next options is available in item's code:
+This example will iterate through all items in `collection` object and output each item using child `repeater` code (`<div slot-scope="r"...` in our case). Next options is available in item's code:
 
 > `{scopeName}` is string you've passed to `slot-scope` attribute inside item's template. In our example is `r`. In that template you'll be able to access to exposed methods and variables using that scope.
 

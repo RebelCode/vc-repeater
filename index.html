@@ -6,8 +6,11 @@
 </head>
 <body>
 <div id="app">
-    <repeater :items="items">
-        <div slot-scope="r">{{ r.item.title }}</div>
+    <repeater :collection="items">
+        <div class="repeater-item" slot-scope="r">
+            <span>{{ r.item.title }}</span>
+            <button @click="r.remove(r.item)">x</button>
+        </div>
     </repeater>
 </div>
 </body>

@@ -31,11 +31,16 @@ let entries = {
         }
     },
     'default': {
-        entry: "./src/index.js",
+        entry: "./tests/e2e/app.js",
         output: {
             path: __dirname + "/build/js",
-            filename: "lib.min.js",
+            filename: "app.min.js",
             libraryTarget: 'umd'
+        },
+        resolve: {
+            alias: {
+                vue: 'vue/dist/vue.js'
+            }
         }
     }
 }
